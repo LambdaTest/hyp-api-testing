@@ -1,0 +1,26 @@
+---
+version: 0.1
+runson: win
+autosplit: true
+maxRetries: 5
+concurrency: 1
+
+env:
+  CACHE_DIR: m2_cache_dir
+
+cacheKey: '{{ checksum "pom.xml" }}'
+cacheDirectories:
+  - $CACHE_DIR
+
+pre:
+  - mkdir m2_cache_dir
+  - mvn -Dmaven.repo.local=$CACHE_DIR -Dmaven.test.skip=true clean install
+
+mergeArtifacts: true
+
+testDiscovery:
+  type: raw
+  mode: dynamic
+  command: grep 'class name' src/test/java/testing.xml | awk '{print$2}' | sed 's/name=//g' | sed 's/\x3e//g'
+
+testRunnerCommand: mvn `-Dmaven.repo.local=$CACHE_DIR `-Dtest=$test `-Dbrowser=chrome `-Dversion=latest `-Dplatform="$HYPEREXECUTE_PLATFORM"

@@ -1,0 +1,17 @@
+no such element: Unable to locate element: {"method":"css selector","selector":"*[name='li']"}
+  (Session info: chrome=103.0.5060.66)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'LT-MBP-088', ip: '192.168.101.16', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '1.8.0_262-internal'
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 103.0.5060.66, chrome: {chromedriverVersion: 103.0.5060.134 (8ec6fce403b..., userDataDir: C:\Users\ltuser\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:53333}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true, webdriver.remote.sessionid: 14a32be6745121eed4976bf5f3d...}
+Session ID: 14a32be6745121eed4976bf5f3d6879b
+*** Element info: {Using=name, value=li}
+200
+{"data":{"test_id":"VQ59N-DA5RO-RXOPA-J6I2N","build_id":7021773,"user_id":253181,"username":"vishnurv2","test_type":"selenium","platform":"win10","browser":"chrome","browser_version":"103.0","status_ind":"running","session_id":"14a32be6745121eed4976bf5f3d6879b","build_name":"API_TESTING_SAMPLE_LAMBDATEST","create_timestamp":"2022-08-23 10:37:39","start_timestamp":"2022-08-23 10:37:43","remark":"running","console_logs_url":"https://api.lambdatest.com/automation/api/v1/sessions/14a32be6745121eed4976bf5f3d6879b/log/console","network_logs_url":"https://api.lambdatest.com/automation/api/v1/sessions/14a32be6745121eed4976bf5f3d6879b/log/network","command_logs_url":"https://api.lambdatest.com/automation/api/v1/sessions/14a32be6745121eed4976bf5f3d6879b/log/command","selenium_logs_url":"https://api.lambdatest.com/automation/api/v1/sessions/14a32be6745121eed4976bf5f3d6879b/log/selenium","video_url":"https://automation.lambdatest.com/public/video?testID=VQ59N-DA5RO-RXOPA-J6I2N\u0026auth=18f78c46c2e1545d257aeb23847e8277","screenshot_url":"https://video-bundler.lambdatest.com/VQ59N-DA5RO-RXOPA-J6I2N/screenshots.zip?orgId=246893\u0026createTimestamp=1661251059\u0026testCreateTimestamp=2022-08-23%2010:37:39"},"message":"Retrieve session was successful","status":"success"}
+
+===============================================
+DesktopBrowsers
+Total tests run: 1, Failures: 0, Skips: 0
+===============================================
+

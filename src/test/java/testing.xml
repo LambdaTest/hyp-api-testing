@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="5" name="DesktopBrowsers" parallel="tests">
+
+        <test name="Win10 - Chrome">
+            <parameter name="browser" value="Chrome"/>
+            <parameter name="version" value="latest"/>
+            <parameter name="platform" value="Windows 10"/>
+            <parameter name="resolution" value="1920x1080"/>
+            <classes>
+                <class name="apitestingsample" />
+            </classes>
+        </test>
+</suite>
