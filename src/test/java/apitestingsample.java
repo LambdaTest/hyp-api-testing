@@ -49,13 +49,11 @@ public class apitestingsample {
 
         try {
             String url = "https://" + username + ":" + accesskey + gridURL;
+            System.out.println("Starting test : ");
+//            driver = new RemoteWebDriver(new URL(url), capabilities);
 
-            driver = new RemoteWebDriver(new URL(url), capabilities);
-
-        } catch (MalformedURLException e) {
+        } catch (Exception e) {
             System.out.println("Invalid grid URL");
-        } catch (Exception f) {
-            System.out.println(f.getMessage());
         }
     }
 
@@ -68,52 +66,28 @@ public class apitestingsample {
         try {
 
 
-            // Launch the app
-            driver.get("https://lambdatest.github.io/sample-todo-app/");
 
-            // Click on First Item
-            driver.findElement(By.name("li1")).click();
-
-            // Click on Second Item
-            driver.findElement(By.name("li2")).click();
-
-            // Add new item is list
-            driver.findElement(By.id("sampletodotext")).clear();
-            driver.findElement(By.id("sampletodotext")).sendKeys("Yey, Let's add it to list");
-            driver.findElement(By.id("addbutton")).click();
-
-            // Verify Added item
-            String item = driver.findElement(By.xpath("/html/body/div/div/div/ul/li[6]/span")).getText();
-            status = "passed";
-
-        } catch (Exception e) {
-            status = "failed";
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public void api() {
-
-
-            RestAssured.baseURI = "https://api.lambdatest.com/automation/api/v1/sessions/"+driver.getSessionId();
+            RestAssured.baseURI = "https://stage-api.lambdatestinternal.com/automation/api/v1/sessions/stage_session_id";
             Response session_response = given().auth().basic(username,accesskey)
                     .when().get();
             System.out.println("Status code: "+session_response.getStatusCode());
             System.out.println(session_response.asString());
 
 
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
+    }
+
 
 
     @AfterTest
     @org.testng.annotations.Parameters(value = {"platform", "browser", "version"})
     public void tearDown(String platform, String browser, String version) throws Exception {
 
-        if (driver != null) {
-            api();
-            ((JavascriptExecutor) driver).executeScript("lambda-status=" + status);
-            driver.quit();
-        }
+//        if (driver != null) {
+            System.out.println("Ending test");
+//        }
     }
 
 
