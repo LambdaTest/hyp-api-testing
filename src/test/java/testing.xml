@@ -3,10 +3,6 @@
 <suite thread-count="5" name="DesktopBrowsers" parallel="tests">
 
         <test name="Win10 - Chrome">
-            <parameter name="browser" value="Chrome"/>
-            <parameter name="version" value="latest"/>
-            <parameter name="platform" value="Windows 10"/>
-            <parameter name="resolution" value="1920x1080"/>
             <classes>
                 <class name="apitestingsample" />
             </classes>

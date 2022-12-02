@@ -1,6 +1,11 @@
+import com.google.common.net.MediaType;
 import groovy.json.JsonParser;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import org.json.simple.parser.JSONParser;
+
+import org.json.JSONArray;
+import org.json.simple.JSONObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -17,6 +22,7 @@ import org.hamcrest.Matchers.*;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.PrintStream;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -25,7 +31,7 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.sessionId;
 
 
-public class apitestingsample {
+public class postapi {
 
     public String username = System.getenv("LT_USERNAME");    //lambda UserName
     public String accesskey = System.getenv("LT_ACCESS_KEY"); //lambda accessKey
@@ -36,18 +42,8 @@ public class apitestingsample {
     String status;
 
     @BeforeTest
-    @org.testng.annotations.Parameters(value = {"browser", "version", "platform"})
-    public void setUp(String browser, String version, String platform) throws Exception {
+    public void setUp() throws Exception {
 
-
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-
-        capabilities.setCapability("platform", System.getProperty("platform"));
-        capabilities.setCapability("browserName", System.getProperty("browser"));
-        capabilities.setCapability("version", System.getProperty("version"));
-        capabilities.setCapability("build", "API_TESTING_SAMPLE_LAMBDATEST");
-        capabilities.setCapability("console",true);
-        capabilities.setCapability("terminal",true);
 
         try {
             String url = "https://" + username + ":" + accesskey + gridURL;
@@ -62,25 +58,26 @@ public class apitestingsample {
 
 
     @Test(priority = 1)
-    @org.testng.annotations.Parameters(value = {"platform", "browser", "version", "resolution"})
+
     public void sample() {
 
         try {
 
-            given().when().get(url).then().log()
-                    .all();
 
-            given().queryParam("CUSTOMER_ID","68195")
-                    .queryParam("PASSWORD","1234!")
-                    .queryParam("Account_No","1") .when().get("http://demo.guru99.com/V4/sinkministatement.php").then().log().body();
-            int statusCode= given().queryParam("CUSTOMER_ID","68195")
-                    .queryParam("PASSWORD","1234!")
-                    .queryParam("Account_No","1")
-                    .when().get("http://demo.guru99.com/V4/sinkministatement.php").getStatusCode();
-            System.out.println("The response status is "+statusCode);
+            JSONParser parser = new JSONParser();
 
-            given().when().get(url).then().assertThat().statusCode(200);
+            Object obj = parser.parse(new FileReader("session.json"));
 
+            JSONObject jsonObject = (JSONObject)obj;
+            String session = (String)jsonObject.get("session_id");
+
+            System.out.println("session : "  +session);
+
+            RestAssured.baseURI = "https://api.lambdatest.com/automation/api/v1/sessions/"+ session;
+            Response session_response = given().auth().basic(username,accesskey)
+                    .when().get();
+            System.out.println("Status code: "+session_response.getStatusCode());
+            System.out.println(session_response.asString());
 
 
         } catch (Exception e) {
@@ -91,11 +88,10 @@ public class apitestingsample {
 
 
     @AfterTest
-    @org.testng.annotations.Parameters(value = {"platform", "browser", "version"})
-    public void tearDown(String platform, String browser, String version) throws Exception {
+    public void tearDown() throws Exception {
 
 //        if (driver != null) {
-            System.out.println("Ending test");
+        System.out.println("Ending test");
 //        }
     }
 

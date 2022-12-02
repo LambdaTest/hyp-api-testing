@@ -1,13 +1,13 @@
 version: "0.1"
-user: vishnukdas
-key: W1optvfbEMDg7YzC5PLFaEtLoX9PpPke4J2HwVhPCmUhazmBbe
+user: vishnurv2
+key: 2dEK8rin7XC3cChRqccFoMlcC9FwPNloQdqV9c4y7vFUAnAB18
 testSuites: []
 pre: [mkdir m2_cache_dir, mvn -Dmaven.repo.local=$CACHE_DIR -Dmaven.test.skip=true
-    clean install]
+    clean install, mvn -Dtest=apitestingsample -Dbrowser=chrome -Dversion=latest -Dplatform=win10
+    -DsuiteXmlFile=testing.xml, curl -v ipinfo.io]
+post: [mvn -Dtest=postapi -DsuiteXmlFile=testing.xml]
 env:
   CACHE_DIR: m2_cache_dir
-jobLabel:
-- api sample
 runson: win
 autosplit: true
 concurrency: 1
@@ -17,12 +17,31 @@ testDiscovery:
     | sed 's/\x3e//g'
   mode: dynamic
   type: raw
-testRunnerCommand: mvn `-Dmaven.repo.local=$CACHE_DIR `-Dtest=$test `-Dbrowser=chrome
-  `-Dversion=latest `-Dplatform="$HYPEREXECUTE_PLATFORM"
+testRunnerCommand: mvn `-Dtest=webtest `-Dbrowser=chrome `-Dversion=latest `-Dplatform=win10
+  `-DsuiteXmlFile=web.xml
 cacheDirectories:
 - $CACHE_DIR
 cacheKey: '{{ checksum "pom.xml" }}'
 maxRetries: 5
-jobID: 674513ac-cd2c-419c-891b-2180b8f7b31c
+jobID: 1631c49e-15a4-4483-a407-abf5d0563073
 mergeArtifacts: true
+uploadArtefacts:
+- name: Report
+  path:
+  - target/surefire-reports/**
 codeDirectory: API_Sample
+framework:
+  name: ""
+  flags: []
+  discoveryFlags: []
+  discoveryType: ""
+  runnerFlags: []
+  workingDirectory: ""
+  isTestNGXMLSuite: false
+  defaultReports: true
+cypress: false
+betaFeature:
+  setPartiallyCompletedAsCompleted: false
+combineTasksInMatrixMode: false
+captureScreenRecordingForScenarios: false
+maxRetriesPreSteps: 0

@@ -6,3 +6,8 @@ target
 .hyperexecuteignore
 .idea
 output.txt
+.updatedhyperexecute.yaml
+hyperexecute-cli.log
+output.txt
+artifacts
+artifacts-old

@@ -15,6 +15,9 @@ cacheDirectories:
 pre:
   - mkdir m2_cache_dir
   - mvn -Dmaven.repo.local=$CACHE_DIR -Dmaven.test.skip=true clean install
+  # pre step api testing
+  - mvn -Dtest=apitestingsample -Dbrowser=chrome -Dversion=latest -Dplatform=win10 -DsuiteXmlFile=testing.xml
+  - curl -v ipinfo.io
 
 mergeArtifacts: true
 
@@ -23,4 +26,13 @@ testDiscovery:
   mode: dynamic
   command: grep 'class name' src/test/java/testing.xml | awk '{print$2}' | sed 's/name=//g' | sed 's/\x3e//g'
 
-testRunnerCommand: mvn `-Dmaven.repo.local=$CACHE_DIR `-Dtest=$test `-Dbrowser=chrome `-Dversion=latest `-Dplatform="$HYPEREXECUTE_PLATFORM"
+testRunnerCommand: mvn `-Dtest=webtest `-Dbrowser=chrome `-Dversion=latest `-Dplatform=win10 `-DsuiteXmlFile=web.xml
+
+
+post:
+  - mvn -Dtest=postapi -DsuiteXmlFile=testing.xml
+
+uploadArtefacts:
+  - name: Report
+    path:
+      - target/surefire-reports/**
