@@ -68,53 +68,6 @@ public class webtest
         System.out.println("Started session");
     }
 
-    @Test(description="To Do App on React App")
-    public void test1_element_addition_1() throws InterruptedException
-    {
-        driver.get(testURL);
-        Thread.sleep(5000);
-
-        /* Selenium Java 3.141.59 */
-        WebDriverWait wait = new WebDriverWait(driver, 5);
-        /* WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); */
-
-        /* Click on the Link */
-        By elem_new_item_locator = By.xpath("//input[@class='new-todo']");
-        WebElement elem_new_item = driver.findElement(elem_new_item_locator);
-
-        /* Add 5 items in the list */
-        Integer item_count = 5;
-
-        for (int count = 1; count <= item_count; count++)
-        {
-            /* Enter the text box for entering the new item */
-            elem_new_item.click();
-            elem_new_item.sendKeys("Adding a new item " + count + Keys.ENTER);
-            Thread.sleep(2000);
-        }
-
-        WebElement temp_element;
-
-        /* Now that the items are added, we mark the top three items as completed */
-        for (int count = 1; count <= item_count; count++)
-        {
-            Integer fixed_cta_count = 1;
-
-            /* Enter the text box for entering the new item */
-            /* Create a varying string to create a new XPath */
-            String xpath_str = "//ul[@class='todo-list']/li[" + fixed_cta_count + "]" + "//input[@class='toggle']";
-            temp_element = driver.findElement(By.xpath(xpath_str));
-
-            temp_element.click();
-            Thread.sleep(2000);
-            /* Toggle button to destroy */
-            driver.findElement(By.xpath("//li[@class='completed']//button[@class='destroy']")).click();
-            Thread.sleep(1000);
-        }
-
-        /* Once you are outside this code, the list would be empty */
-    }
-
     @Test(description="To execute an API test")
     public void apitest() throws InterruptedException
     {

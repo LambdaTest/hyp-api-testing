@@ -20,7 +20,6 @@ import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.sessionId;
 
@@ -38,8 +37,6 @@ public class apitestingsample {
     @BeforeTest
     @org.testng.annotations.Parameters(value = {"browser", "version", "platform"})
     public void setUp(String browser, String version, String platform) throws Exception {
-
-
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
         capabilities.setCapability("platform", System.getProperty("platform"));
@@ -58,8 +55,6 @@ public class apitestingsample {
             System.out.println("Invalid grid URL");
         }
     }
-
-
 
     @Test(priority = 1)
     @org.testng.annotations.Parameters(value = {"platform", "browser", "version", "resolution"})
@@ -88,8 +83,6 @@ public class apitestingsample {
         }
     }
 
-
-
     @AfterTest
     @org.testng.annotations.Parameters(value = {"platform", "browser", "version"})
     public void tearDown(String platform, String browser, String version) throws Exception {
@@ -99,7 +92,4 @@ public class apitestingsample {
 //        }
     }
 
-
-
 }
-

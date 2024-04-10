@@ -1,8 +1,16 @@
 ---
 version: 0.1
+globalTimeout: 90
+testSuiteTimeout: 90
+testSuiteStep: 90
+
 runson: win
+
 autosplit: true
-maxRetries: 5
+
+retryOnFailure: true
+maxRetries: 1
+
 concurrency: 1
 
 env:
@@ -19,7 +27,14 @@ pre:
   - mvn -Dtest=apitestingsample -Dbrowser=chrome -Dversion=latest -Dplatform=win10 -DsuiteXmlFile=testing.xml
   - curl -v ipinfo.io
 
+post:
+  - mvn -Dtest=postapi -DsuiteXmlFile=testing.xml
+
 mergeArtifacts: true
+uploadArtefacts:
+  - name: Report
+    path:
+      - target/surefire-reports/**
 
 testDiscovery:
   type: raw
@@ -28,11 +43,4 @@ testDiscovery:
 
 testRunnerCommand: mvn `-Dtest=webtest `-Dbrowser=chrome `-Dversion=latest `-Dplatform=win10 `-DsuiteXmlFile=web.xml
 
-
-post:
-  - mvn -Dtest=postapi -DsuiteXmlFile=testing.xml
-
-uploadArtefacts:
-  - name: Report
-    path:
-      - target/surefire-reports/**
+jobLabel: ['HYP', 'API Testing']
