@@ -20,9 +20,9 @@ With TestMu AI (Formerly LambdaTest), you can run API tests using HyperExecute a
 To run API tests on HyperExecute from your local system, you need:
 
 - Java (JDK 8 or above) and Maven installed on your system.
-- Your TestMu AI (Formerly LambdaTest) [Username and Access Key](https://www.testmuai.com/support/docs/hyperexecute-how-to-get-my-username-and-access-key/).
-- The [HyperExecute CLI](https://www.testmuai.com/support/docs/hyperexecute-cli-run-tests-on-hyperexecute-grid/) to initiate a test execution job.
-- [Environment variables](https://www.testmuai.com/support/docs/hyperexecute-environment-variable-setup/) configured for your credentials.
+- Your TestMu AI (Formerly LambdaTest) Username and Access Key.
+- The HyperExecute CLI to initiate a test execution job.
+- Environment variables configured for your credentials.
 
 ### Setup
 
@@ -55,7 +55,7 @@ Run your API tests on HyperExecute using the CLI:
 
 > **NOTE:** On macOS, if you see a permission denied warning, run `chmod u+x ./hyperexecute`.
 
-View results in the [TestMu AI HyperExecute Dashboard](https://hyperexecute.lambdatest.com/).
+View results in the TestMu AI HyperExecute Dashboard.
 
 ### Local testing with TestMu AI Tunnel
 
