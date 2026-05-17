@@ -36,13 +36,7 @@ To run API tests on HyperExecute from your local system, you need:
     mvn install -DskipTests
     ```
 
-3. Download the HyperExecute CLI for your OS:
-
-    | Platform | Download Link |
-    | ---------| --------------------------- |
-    | Linux    | https://downloads.lambdatest.com/hyperexecute/linux/hyperexecute |
-    | Windows  | https://downloads.lambdatest.com/hyperexecute/windows/hyperexecute.exe |
-    | macOS    | https://downloads.lambdatest.com/hyperexecute/darwin/hyperexecute |
+3. Download the HyperExecute CLI for your OS from the HyperExecute downloads page.
 
 ### Run tests
 
